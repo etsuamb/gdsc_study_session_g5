@@ -1,112 +1,236 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+
 import 'package:flutter/material.dart';
-import 'package:todo/NewTask.dart';
-import 'package:todo/Task.dart';
 
-class Taskslist extends StatelessWidget {
-  const Taskslist({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    var height = MediaQuery.of(context).size.height;
-    var width = MediaQuery.of(context).size.width;
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(
-            Icons.arrow_back_ios_new,
-            color: Colors.red.shade300,
-          ),
-        ),
-        title: const Text("Todo list"),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.more_vert),
-            onPressed: () {},
-          ),
-        ],
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Center(
-            child: Image.asset(
-              "image/front.jpg",
-              width: width * 0.8,
-              height: height * 0.30,
-            ),
-          ),
-          const Row(
-            children: [
-              Text(
-                "Tasks list",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: height * 0.008,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SizedBox(
-              height: height * 0.40,
-              child: const TaskWidget(),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Center(
-              child: MaterialButton(
-                  minWidth: width * 0.35,
-                  height: height * 0.06,
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return const NewTask();
-                    }));
-                  },
-                  color: Colors.red.shade300,
-                  child: const Text(
-                    "Create Task",
-                    style: TextStyle(color: Colors.white),
-                  )),
-            ),
-          )
-        ]),
-      ),
-    );
-  }
+void main() {
+  runApp(Todo());
 }
 
-List allTasks = [
-  ["UX/Ui", "Description", "8/3/10"],
-  ["Reading", "Description", "8/3/10"],
-  ["Study", "Description", "8/3/10"],
-  ["Dart", "Description", "8/3/10"],
-  ["Dart", "Description", "8/3/10"],
-];
-
-class TaskWidget extends StatelessWidget {
-  const TaskWidget({super.key});
+class Todo extends StatelessWidget {
+  const Todo({Key? key});
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> eachTask = [];
-    var height = MediaQuery.of(context).size.height;
-    for (int i = 0; i < allTasks.length; i++) {
-      Widget one = Task(allTasks[i][0], allTasks[i][1], allTasks[i][2]);
-      eachTask.add(one);
-      eachTask.add(
-        SizedBox(
-          height: height * 0.02,
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0),
+                    child: IconButton(
+                      onPressed: () {
+                      },
+                      icon: Icon(Icons.arrow_forward_ios, color: Colors.black),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 30.0),
+                    child: Text('Todo list',
+                        style: TextStyle(
+                          fontSize: 35,
+                        )),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 10.0),
+                    child: Icon(Icons.more_vert),
+                  ),
+                ],
+              ),
+              SizedBox(height: 10),
+              Image.asset('lib/todolist.png'),
+              SizedBox(
+                height: 20,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 440.0),
+                child: Text(
+                  'Tasks List',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
+                ),
+              ),
+              SizedBox(height: 20),
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0, right: 20),
+                child: Stack(
+                  children: [
+                    Positioned(
+                      left: 30.0,
+                      bottom: 19.0,
+                      child: Text('U',
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold)),
+                    ),
+                    Center(
+                      child: Text('UI/UX APP\n' 'Design',
+                          style: TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.bold)),
+                    ),
+                    Positioned(
+                      right: 30.0,
+                      bottom: 19.0,
+                      child: Text('April 29, 2023',
+                          style: TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.bold)),
+                    ),
+                    TextFormField(
+                      keyboardType: TextInputType.text,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 20),
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0, right: 20),
+                child: Stack(
+                  children: [
+                    Positioned(
+                      left: 30.0,
+                      bottom: 19.0,
+                      child: Text('U',
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold)),
+                    ),
+                    Center(
+                      child: Text('UI/UX APP\n' 'Design',
+                          style: TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.bold)),
+                    ),
+                    Positioned(
+                      right: 30.0,
+                      bottom: 19.0,
+                      child: Text('April 29, 2023',
+                          style: TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.bold)),
+                    ),
+                    TextFormField(
+                      keyboardType: TextInputType.text,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 20),
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0, right: 20),
+                child: Stack(
+                  children: [
+                    Positioned(
+                      left: 30.0,
+                      bottom: 19.0,
+                      child: Text('V',
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold)),
+                    ),
+                    Center(
+                      child: Text('View Candidates',
+                          style: TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.bold)),
+                    ),
+                    Positioned(
+                      right: 30.0,
+                      bottom: 19.0,
+                      child: Text('April 29, 2023',
+                          style: TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.bold)),
+                    ),
+                    TextFormField(
+                      keyboardType: TextInputType.text,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 20),
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0, right: 20),
+                child: Stack(
+                  children: [
+                    Positioned(
+                      left: 30.0,
+                      bottom: 19.0,
+                      child: Text('F',
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold)),
+                    ),
+                    Center(
+                      child: Text('FootBall Cu\n' 'DryBilling',
+                          style: TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.bold)),
+                    ),
+                    Positioned(
+                      right: 30.0,
+                      bottom: 19.0,
+                      child: Text('April 29, 2023',
+                          style: TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.bold)),
+                    ),
+                    TextFormField(
+                      keyboardType: TextInputType.text,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              Center(
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Text('to press');
+                    },
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.red),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(0),
+                        ),
+                      ),
+                    ),
+                    child: Text(
+                      'Create Task',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              )
+            ],
+          ),
         ),
-      );
-    }
-    return SingleChildScrollView(
-      child: Column(children: eachTask),
+      ),
     );
   }
 }

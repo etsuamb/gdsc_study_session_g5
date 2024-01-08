@@ -1,168 +1,156 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+
 import 'package:flutter/material.dart';
+void main() {
+  runApp(NewTask());
+}
 
 class NewTask extends StatelessWidget {
-  const NewTask({super.key});
-
   @override
   Widget build(BuildContext context) {
-    var height = MediaQuery.of(context).size.height;
-    var width = MediaQuery.of(context).size.width;
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back_ios,
-            color: Colors.red.shade300,
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 2.0, left: 8),
+                    child: IconButton(
+                      onPressed: () {
+                      },
+                      icon: Icon(Icons.arrow_forward_ios, color: Colors.black),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 70.0, left: 8),
+                    child: Text(
+                      'Create new task',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 25,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 2.0),
+                    child: Icon(Icons.more_vert),
+                  ),
+                ],
+              ),
+              SizedBox(height: 35),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20.0),
+                    child: Text(
+                      'Main task name',
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.red,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 2.5),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                    child: TextFormField(
+                      keyboardType: TextInputType.text,
+                      decoration: InputDecoration(
+                        labelText: 'UI/UX App design',
+                        labelStyle: TextStyle(fontSize: 14),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20.0),
+                    child: Text(
+                      'Due Date',
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.red,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 2.5),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                    child: TextFormField(
+                      keyboardType: TextInputType.datetime,
+                      decoration: InputDecoration(
+                        labelText: 'April 29, 2023 12:30 AM',
+                        labelStyle: TextStyle(fontSize: 14),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        suffixIcon:
+                            Icon(Icons.date_range_outlined, color: Colors.red),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20.0),
+                    child: Text(
+                      'Description',
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.red,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 2.5),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                    child: TextFormField(
+                      keyboardType: TextInputType.text,
+                      decoration: InputDecoration(
+                        labelText:
+                            'First I have to animate the logo and later prototyping the design it is very important',
+                        labelStyle: TextStyle(fontSize: 14),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 50),
+              Center(
+                child: ElevatedButton(
+                  onPressed: () {
+                    Text('to press');
+                  },
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Colors.red),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                    ),
+                  ),
+                  child: Text(
+                    'Add Task',
+                    style: TextStyle(fontSize: 14.0, color: Colors.white),
+                  ),
+                ),
+              ),
+            ],
           ),
-          onPressed: () {
-            Navigator.pop(context);
-          },
         ),
-        actions: <Widget>[
-          IconButton(onPressed: () {}, icon: const Icon(Icons.more_vert)),
-        ],
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(25.0),
-        child: Column(children: [
-          const Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "Create New Task",
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-              ),
-            ],
-          ),
-          Container(
-            height: height * 0.001,
-            color: Colors.black,
-          ),
-          SizedBox(
-            height: height * 0.03,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Text(
-                "Main task Name",
-                style: TextStyle(
-                  color: Colors.red.shade300,
-                ),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: height * 0.02,
-          ),
-          Container(
-            height: height * 0.06,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                boxShadow: const [
-                  BoxShadow(
-                      blurRadius: 5,
-                      spreadRadius: 4,
-                      color: Colors.black45,
-                      blurStyle: BlurStyle.outer)
-                ]),
-            child: const TextField(
-              decoration: InputDecoration(
-                  border: InputBorder.none, labelText: "Task Name"),
-            ),
-          ),
-          SizedBox(
-            height: height * 0.03,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Text(
-                "Due date",
-                style: TextStyle(
-                  color: Colors.red.shade300,
-                ),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: height * 0.02,
-          ),
-          Container(
-              height: height * 0.05,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Colors.black45,
-                      spreadRadius: 4,
-                      blurRadius: 5,
-                      blurStyle: BlurStyle.outer,
-                    )
-                  ]),
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text("April 29/2023"),
-                    IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.calendar_month,
-                          color: Colors.red.shade300,
-                        ))
-                  ],
-                ),
-              )),
-          SizedBox(
-            height: height * 0.03,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Text(
-                "Description",
-                style: TextStyle(
-                  color: Colors.red.shade300,
-                ),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: height * 0.02,
-          ),
-          Container(
-            height: height * 0.1,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                boxShadow: const [
-                  BoxShadow(
-                      blurRadius: 5,
-                      spreadRadius: 4,
-                      color: Colors.black45,
-                      blurStyle: BlurStyle.outer)
-                ]),
-            child: const TextField(
-              decoration: InputDecoration(
-                  border: InputBorder.none, labelText: "First...."),
-            ),
-          ),
-          SizedBox(
-            height: height * 0.03,
-          ),
-          Center(
-              child: MaterialButton(
-            minWidth: width * 0.45,
-            height: height * 0.055,
-            color: Colors.red.shade300,
-            onPressed: () {},
-            child: const Text(
-              "Add Task",
-              style: TextStyle(color: Colors.white),
-            ),
-          ))
-        ]),
       ),
     );
   }
